@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en"> 
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Troop Calendar upcoming event listing.">
+        <title>Upcoming Events</title>
+        <link rel="alternate" type="application/json+oembed" 
+            href="/oembed?url=/upcoming&format=json"
+            title="Bacon Lollys oEmbed Profile" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous">
+        </script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" crossorigin="anonymous">
+        </script>
+    </head>
+    <body>
+        <div class="container">
+            {% for event in context['events'] %}
+            <div class="card">
+                <div class="card-header">
+                    {{ event['begin_human']|capitalize }}
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{ event['name'] }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ event['location'] }}</h6>
+                    <p class="card-text">Starts: {{ event['begin'] }}</p>
+                    <p class="card-text">Ends: {{ event['end'] }}</p>
+                    <p class="card-text">{{ event['description'] }}</p>
+                    <a href="{{ event['url'] }}" class="btn btn-primary">View, RSVP, and more</a>    
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </body>
+</html>
